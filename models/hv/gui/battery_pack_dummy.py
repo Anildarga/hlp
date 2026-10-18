@@ -37,10 +37,6 @@ from models.hv.session.scan_log import ScanRecord, append_scan_record
 COMPACT_IPADY = 2
 _RESET_DELAY_MS = 100
 
-
-# def _format_date(dt: datetime) -> str:
-#     return format_date_display(dt.date())
-
 def _format_time(dt: datetime) -> str:
     return dt.strftime("%I:%M:%S %p").lstrip("0")
 
@@ -80,11 +76,7 @@ class BatteryPackDummyGUI:
         self.pack_qr_var = tk.StringVar(value="")
         self.print_var = tk.StringVar(value="print")
 
-
-        # stored = load_pack_serial()
-        # stored_parsed = parse_serial_number(stored) if stored else None
-        #self._true_date = stored_parsed.as_date if stored_parsed else datetime.now().date()
-        self._true_date = datetime.now().date() #always call today date, no ecncoded date fallback should happen 
+        self._true_date = datetime.now().date() 
 
         self._build_ui()
         self.vars["pack_shift"].set(self._get_current_shift())
@@ -188,7 +180,6 @@ class BatteryPackDummyGUI:
             ("Plant",    "plant",    ["Jigani", "Domlur"]),
             ("Line",     "line",     ["1", "2", "3"]),
             ("Variant",  "variant",  VARIANT_OPTIONS),
-            #("Pack ID Format", "pack_id_format", ["New", "Old"]), #use this if you need old format
             ("Pack ID Format", "pack_id_format", ["New"]), #only new format
             ("Pack Shift", "pack_shift", ["A", "B", "C"]),
         ]
